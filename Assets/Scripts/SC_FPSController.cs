@@ -71,6 +71,8 @@ public class SC_FPSController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+
+        // Left Click interaction
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = new Ray(transform.position, Camera.main.transform.forward);
