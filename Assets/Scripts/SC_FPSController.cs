@@ -41,15 +41,6 @@ public class SC_FPSController : MonoBehaviour
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
-
-        /*if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
-        {
-            moveDirection.y = jumpSpeed;
-        }
-        else
-        {
-            moveDirection.y = movementDirectionY;
-        }*/
         moveDirection.y = movementDirectionY;
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
