@@ -42,14 +42,15 @@ public class SC_FPSController : MonoBehaviour
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        /*if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = jumpSpeed;
         }
         else
         {
             moveDirection.y = movementDirectionY;
-        }
+        }*/
+        moveDirection.y = movementDirectionY;
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
         // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
@@ -69,6 +70,16 @@ public class SC_FPSController : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = new Ray(transform.position, Camera.main.transform.forward);
+            Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 2.0f);
+            
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Debug.Log(hit.transform.name);
+            }
         }
     }
 }
