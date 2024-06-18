@@ -6,6 +6,32 @@ using UnityEngine;
 
 public class SC_FPSController : MonoBehaviour
 {
+    // singleton code
+    private static SC_FPSController _instance;
+    public static SC_FPSController Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.Log("Player is null");
+            }
+            return _instance;
+        }
+    }
+    private void Awake()
+    {
+        _instance = this;
+    }
+
+    // global variable
+    [SerializeField] public int _pages;
+    public void AddPage()
+    {
+        _pages++;
+    }
+
+    // controls
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
     public float jumpSpeed = 8.0f;
