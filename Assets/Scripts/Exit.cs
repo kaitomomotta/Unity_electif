@@ -20,6 +20,17 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(0);
+        if (SC_FPSController.Instance._pages == 8)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            UIManager.Instance.NoExitText.enabled = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        UIManager.Instance.NoExitText.enabled = false;
     }
 }

@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     }
 
     public TextMeshProUGUI ObjectiveText;
+    public TextMeshProUGUI PressEText;
+    [SerializeField] public TextMeshProUGUI NoExitText;
 
     public void UpdateObjectiveText()
     {
@@ -39,10 +41,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void EnablePressE()
+    {
+        PressEText.enabled = true;
+    }
+    public void DisablePressE()
+    {
+        PressEText.enabled = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        DisablePressE();
+        NoExitText.enabled = false;
     }
 
     // Update is called once per frame
