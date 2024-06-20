@@ -5,21 +5,30 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class CameraPulse : MonoBehaviour
 {
-    GameObject slender;
-    PostProcessVolume m_Volume;
-    Vignette m_Vignette;
-    ChromaticAberration m_ChromaticAberration;
+    private GameObject slender;
+    public PostProcessVolume postProcessVolume;
+    private Vignette vignette;
+    private ChromaticAberration chromaticAberration;
     // Start is called before the first frame update
     void Start()
     {
         slender = GameObject.Find("Slender");
-        m_Vignette = GetComponent<Vignette>();
-        m_ChromaticAberration = GetComponent<ChromaticAberration>();
+        if (!postProcessVolume.profile.TryGetSettings(out vignette))
+        {
+            Debug.LogError("No Vignette effect found in PostProcessVolume.");
+            return;
+        }
+        if (!postProcessVolume.profile.TryGetSettings(out chromaticAberration))
+        {
+            Debug.LogError("No Vignette effect found in PostProcessVolume.");
+            return;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_Vignette.intensity.value = Mathf.Sin(Time.realtimeSinceStartup);
+        vignette.intensity.value = Mathf.PingPong(Time.time * 1f, 0.6f); ;
+        chromaticAberration.intensity.value = Mathf.PingPong(Time.time * 1f, 1.0f);
     }
 }
