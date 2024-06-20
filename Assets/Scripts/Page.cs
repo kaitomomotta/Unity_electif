@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Page : MonoBehaviour
 {
+    public UIManager ui;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class Page : MonoBehaviour
         {
             Debug.Log("page got");
             SC_FPSController.Instance.AddPage();
+            ui.pages.Remove(this);
             Destroy(this.gameObject);
             UIManager.Instance.DisablePressE();
         }

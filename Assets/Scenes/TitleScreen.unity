@@ -179,7 +179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Slender caca
+  m_text: Slender Boy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3135fb0be526e994e89e1554ad684db8, type: 2}
   m_sharedMaterial: {fileID: -8866874087568488400, guid: 3135fb0be526e994e89e1554ad684db8, type: 2}
