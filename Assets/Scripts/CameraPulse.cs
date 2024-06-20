@@ -5,14 +5,15 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class CameraPulse : MonoBehaviour
 {
-    private GameObject slender;
+    public GameObject slend;
     public PostProcessVolume postProcessVolume;
     private Vignette vignette;
     private ChromaticAberration chromaticAberration;
+    private Bloom bloom;
+    
     // Start is called before the first frame update
     void Start()
     {
-        slender = GameObject.Find("Slender");
         if (!postProcessVolume.profile.TryGetSettings(out vignette))
         {
             Debug.LogError("No Vignette effect found in PostProcessVolume.");
@@ -23,12 +24,35 @@ public class CameraPulse : MonoBehaviour
             Debug.LogError("No Vignette effect found in PostProcessVolume.");
             return;
         }
+        if (!postProcessVolume.profile.TryGetSettings(out bloom))
+        {
+            Debug.LogError("No Vignette effect found in PostProcessVolume.");
+            return;
+        }
+        vignette.intensity.value = 0;
+        chromaticAberration.intensity.value = 0;
+        bloom.intensity.value = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        vignette.intensity.value = Mathf.PingPong(Time.time * 1f, 0.6f); ;
-        chromaticAberration.intensity.value = Mathf.PingPong(Time.time * 1f, 1.0f);
+        if (slend.GetComponent<Movement>().isInFront()) {
+            Debug.Log("ca marche wala");
+            vignette.intensity.value = 1;
+            chromaticAberration.intensity.value = Mathf.PingPong(Time.time * 2f, 1.0f);
+            bloom.intensity.value += 15f * Time.deltaTime;
+        }
+        else {
+            if (vignette.intensity.value > 0) {
+                vignette.intensity.value -= 0.2f * Time.deltaTime ;  
+            }
+            if (chromaticAberration.intensity.value >=0 ) {
+                chromaticAberration.intensity.value -= 0.01f * Time.deltaTime;
+            }
+            if (bloom.intensity.value >= 0) {
+                bloom.intensity.value -= 20f * Time.deltaTime ;
+            }
+        }
     }
 }

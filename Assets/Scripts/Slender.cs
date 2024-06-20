@@ -15,19 +15,18 @@ public class Movement : MonoBehaviour
     public int speed = 5;
     float timeDeath = 0.0f;
     float maxTimeDeath = 10.0f;
-    public int maxRange = 42;
+    public int maxRange = 50;
     // Start is called before the first frame update
     public NavMeshAgent slender;
     public NavMeshPath path;
+    
     void Start()
     {
         player = GameObject.Find("FPSPlayer").GetComponent<Transform>();
         path = new NavMeshPath();
         
     }
-
-
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -51,17 +50,16 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            timeDeath = 0.0f;
+            timeDeath = timeDeath > 0 ? timeDeath - 0.2f : 0;
         }
-        Debug.Log("Player looked for: " + timeDeath);
     }
 
-    private bool isInFront()
+    public bool isInFront()
     {
         Vector3 directionOfPlayer = transform.position - player.position;
         float distanceToTarget = directionOfPlayer.magnitude;
         float angle = Vector3.Angle(player.forward, directionOfPlayer);
-        if ((Mathf.Abs(angle) > 50 && Mathf.Abs(angle) < 310) || distanceToTarget > maxRange)
+        if ((Mathf.Abs(angle) > 30 && Mathf.Abs(angle) < 330) || distanceToTarget > maxRange)
         {
             return false;
         }
