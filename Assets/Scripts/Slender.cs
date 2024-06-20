@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     private float movementPeriod = 5.0f;
     public int speed = 5;
     float timeDeath = 0.0f;
-    float maxTimeDeath = 5.0f;
+    float maxTimeDeath = 10.0f;
     public int maxRange = 42;
     // Start is called before the first frame update
     public NavMeshAgent slender;
@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
     {
         transform.LookAt(player);
         speed = SC_FPSController.Instance._pages;
-        if (Time.time > nextMovement)
+        if (Time.time > nextMovement && !isInFront())
         {
             nextMovement = Time.time + movementPeriod;
             Vector3 playerPosition = player.position;
@@ -44,7 +44,7 @@ public class Movement : MonoBehaviour
         if(isInFront())
         {
             timeDeath += Time.deltaTime;
-            if (timeDeath >= maxTimeDeath)
+            if (timeDeath >= maxTimeDeath - speed)
             {
                 SceneManager.LoadScene(0);
             }
