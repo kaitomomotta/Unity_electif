@@ -3023,6 +3023,10 @@ PrefabInstance:
       value: 0.11489868
       objectReference: {fileID: 0}
     - target: {fileID: 6890303841720901168, guid: f6af2314b58c7c7488c38566e2fb648d, type: 3}
+      propertyPath: exit
+      value: 
+      objectReference: {fileID: 1844715116}
+    - target: {fileID: 6890303841720901168, guid: f6af2314b58c7c7488c38566e2fb648d, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1766571581}
@@ -6122,6 +6126,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3445836516314784978, guid: c0ec2cd63f93487d92d6623d393c83ba, type: 3}
+      propertyPath: maxRange
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 4061999138098054953, guid: c0ec2cd63f93487d92d6623d393c83ba, type: 3}
       propertyPath: m_Name
       value: Slender
@@ -6318,6 +6326,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1351565627}
   m_SourcePrefab: {fileID: 100100000, guid: 2180dca2755ed8a4e916ecb108662079, type: 3}
+--- !u!1 &1844715116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2466572730421275470, guid: 0ba0ddf365fe69e4a9743ca5f8e936ec, type: 3}
+  m_PrefabInstance: {fileID: 1945125857}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1867121250
 PrefabInstance:
   m_ObjectHideFlags: 0

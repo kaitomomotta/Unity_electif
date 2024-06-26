@@ -20,7 +20,7 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (SC_FPSController.Instance._pages == 8)
+        if (SC_FPSController.Instance._pages == 10)
         {
             SceneManager.LoadScene(0);
         }

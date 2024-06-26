@@ -14,8 +14,8 @@ public class Movement : MonoBehaviour
     private float movementPeriod = 5.0f;
     public int speed = 5;
     float timeDeath = 0.0f;
-    float maxTimeDeath = 10.0f;
-    public int maxRange = 50;
+    float maxTimeDeath = 13.0f;
+    public float maxRange = 75f;
     // Start is called before the first frame update
     public NavMeshAgent slender;
     public NavMeshPath path;
@@ -32,9 +32,9 @@ public class Movement : MonoBehaviour
     {
         transform.LookAt(player);
         speed = SC_FPSController.Instance._pages;
-        if (Time.time > nextMovement && !isInFront())
+        if (Time.time > nextMovement - speed * 0.15f && !isInFront())
         {
-            nextMovement = Time.time + movementPeriod;
+            nextMovement = Time.time + movementPeriod - speed * 0.15f;
             Vector3 playerPosition = player.position;
             Vector3 direction = (playerPosition - transform.position).normalized;
             direction.y = 0;
@@ -58,8 +58,14 @@ public class Movement : MonoBehaviour
     {
         Vector3 directionOfPlayer = transform.position - player.position;
         float distanceToTarget = directionOfPlayer.magnitude;
+        Debug.Log(distanceToTarget);
+        Debug.Log(maxRange);
         float angle = Vector3.Angle(player.forward, directionOfPlayer);
-        if ((Mathf.Abs(angle) > 30 && Mathf.Abs(angle) < 330) || distanceToTarget > maxRange)
+        if (Mathf.Abs(angle) > 30 && Mathf.Abs(angle) < 330)
+        {
+            return false;
+        }
+        if(distanceToTarget > maxRange)
         {
             return false;
         }

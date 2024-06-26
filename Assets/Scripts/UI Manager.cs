@@ -29,21 +29,23 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI PressEText;
     [SerializeField] public TextMeshProUGUI NoExitText;
     public List<Page> pages;
+    public GameObject exit;
     public SC_FPSController player;
     public Slider signalSlider;
     public float minBar = 5f;
     public float maxBar = 500f;
+    public int totalPages = 10;
 
     public void UpdateObjectiveText()
     {
         int pages = SC_FPSController.Instance._pages;
-        if (pages >= 8)
+        if (pages >= totalPages)
         {
             ObjectiveText.text = "Objective:\nGet to the exit...";
         }
         else
         {
-            ObjectiveText.text = "Objective:\nFind out...\n" + pages + "/8 pages collected";
+            ObjectiveText.text = "Objective:\nFind out...\n" + pages + "/" + totalPages + " pages collected";
         }
     }
 
@@ -67,7 +69,10 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        updateBarFill(closestDist(closestPage()));      
+        if (pages.Count > 0)
+            updateBarFill(closestDist(closestPage()));      
+        else
+            updateBarFill(Vector3.Distance(player.transform.position, exit.transform.position));
     }
 
     public Page closestPage() {
@@ -91,8 +96,6 @@ public class UIManager : MonoBehaviour
     }
 
     private void updateBarFill(float distance) {
-        Debug.Log($"Normalized distance: {distance}");
         signalSlider.value = maxBar - distance;
-        Debug.Log($"Signal bar fill amount: {signalSlider.value}");
     }
 }
