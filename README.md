@@ -11,3 +11,5 @@ Un petit radar dans le coin de l'écran indique au joueur s'il se rapproche d'un
 
 Contrôles : 
 FPS classique, ZQSD pour le déplacement, E pour interagir
+
+Conçu sous Unity 2022.3.30f1
